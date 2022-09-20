@@ -1,30 +1,32 @@
-import java.util.Scanner;
 
 public class driver 
 {
+
 	public static void main(String[] args) 
 	{
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter first numerator: ");
-		String num1 = scan.next();
-		System.out.println("Enter first denominator: ");
-		String den1 = scan.next();
+		Coin c = new Coin();
+		if (!c.locked())
+			System.out.println("The coin is unlocked");
+		else
+			System.out.println("The coin is locked");
 		
-		System.out.println("Enter second numerator: ");
-		String num2 = scan.next();
-		System.out.println("Enter second denominator: ");
-		String den2 = scan.next();
-		int top1 = Integer.parseInt(num1);
-		int bot1 = Integer.parseInt(den1);
-		int top2 = Integer.parseInt(num2);
-		int bot2 = Integer.parseInt(den2);
+		c.setKey(1984);
+		System.out.println("The key is 1984");
+		System.out.println("Accessing toString");
+		System.out.println(c.toString());
+		System.out.println("Now trying to lock the coin object with 100 and 1984");
+		c.lock(100);
+		c.lock(1984);
 		
+		System.out.println("Trying to access toString");
+		System.out.println(c.toString());
+		System.out.println("Trying to access flip");
+		c.flip();
 		
-		Rational fraction1 = new Rational(top1, bot1);
-		Rational fraction2 = new Rational(top2, bot2);
-		
-		double check = fraction1.compareTo(fraction2);
-		
-		System.out.println("The difference between the two are: " + check);
+		System.out.println("Trying to unlock with 500");
+		c.unlock(500);
+		System.out.println("Trying to unlock with 1984");
+		c.unlock(1984);
 	}
+
 }
