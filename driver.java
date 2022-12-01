@@ -4,37 +4,19 @@ public class driver
 
 	public static void main(String[] args) 
 	{
-		BankAccount ba = new BankAccount("John", 100);
-		SavingsAccount sa = new SavingsAccount("Bob", 500, 0.01);
-		CheckingAccount ca = new CheckingAccount("Alfred", 1000);
+		SearchableArray array = new SearchableArray();
 		
+		System.out.println(array.toString());
 		
-		System.out.println("BA balance before withdraw: " + ba.getBalance());
-		System.out.println("Try to withdraw -$10 from BA");
-		ba.withdraw(-10);
-				
-		System.out.println("SA balance before withdraw: " + sa.getBalance());
-		System.out.println("Try to withdraw -$50 from SA");
-		sa.withdraw(-50);
+		SortedSearchableArray a2 = new SortedSearchableArray();
 		
+		System.out.println(a2.toString());
 		
-		
-		System.out.println(ba.toString());
-		System.out.println("-----");
-		System.out.println(sa.toString());
-		
-		System.out.println("Savings is instance banking object: " + (sa instanceof BankAccount));
-		System.out.println("Banking is instance of savings object: " + (ba instanceof SavingsAccount));
-		
-		
-		System.out.println("Checking account balance: " + ca.getBalance());
-		System.out.println("Depositing 5$, withdrawing 20$");
-		ca.deposit(5);
-		ca.withdraw(20);
-		System.out.println("Amount before deducting fees: " + ca.getBalance());
-		System.out.println("Number of transactions: " + ca.getTransactionCount());
-		ca.deductFees();
-		System.out.println("Balance after fee deduction: " + ca.getBalance());
+		System.out.println("\nInts in array are random so searching will be done always on index 3\n");
+		System.out.println("Linear on sorted array object: " + a2.linearSearch(a2.getArray()[3]));
+		System.out.println("Binary on sorted array object: " + a2.binarySearch(a2.getArray()[3]));
+		System.out.println("Search for nonexistent element: " + a2.binarySearch(523));
+
 	}
 
 }
