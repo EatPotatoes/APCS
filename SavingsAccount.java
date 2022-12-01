@@ -9,7 +9,7 @@
  * 
  */
 
-public class SavingsAccount extends BankAccount
+public class SavingsAccount extends BankAccount implements Comparable
 {
 	private double interestRate;
 
@@ -43,5 +43,17 @@ public class SavingsAccount extends BankAccount
 		result = result + "\nInterest Rate: " + interestRate;
 		
 		return result;
+	}
+	
+	//Exercise 4
+	public int compareTo(Object arg0) 
+	{
+		SavingsAccount acc = (SavingsAccount) arg0;
+		if(this.interestRate == acc.interestRate)
+			return 0;
+		else if(this.interestRate > acc.interestRate)
+			return 1;
+		else
+			return -1;
 	}
 }
