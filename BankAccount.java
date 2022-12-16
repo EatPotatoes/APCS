@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  */
 
-public class BankAccount implements Comparable
+public class BankAccount 
 {
 	private double balance;
 	private String name;
@@ -100,33 +100,5 @@ public class BankAccount implements Comparable
 		
 		return result;
 	}
-
-	/*
-	//Exercise 2
-	public int compareTo(Object arg0) 
-	{
-		BankAccount acc = (BankAccount) arg0;
-		if(this.getBalance() == acc.getBalance())
-			return 0;
-		else if(this.getBalance() > acc.getBalance())
-			return 1;
-		else
-			return -1;
-	}
-	*/
-	
-	
-	//Exercise 3
-	public int compareTo(Object arg0) 
-	{
-		BankAccount acc = (BankAccount) arg0;
-		if(this.getName().compareTo(acc.getName()) == 0)
-			return 0;
-		else if(this.getName().compareTo(acc.getName()) > 0)
-			return 1;
-		else
-			return -1;
-	}
-	
 }
  

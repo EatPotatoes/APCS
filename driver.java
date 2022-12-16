@@ -1,22 +1,51 @@
+import java.util.ArrayList;
 
 public class driver 
 {
-
 	public static void main(String[] args) 
 	{
-		SearchableArray array = new SearchableArray();
+		ArrayList <BankAccount> accs = new ArrayList <BankAccount>();
 		
-		System.out.println(array.toString());
+		accs.add(new CheckingAccount("CA 1", 0));
+		accs.add(new SavingsAccount("SA 1", 0, 1));
+		accs.add(new CheckingAccount("CA 2", 0));
+		accs.add(new SavingsAccount("SA 2", 0, 2));
+		accs.add(new CheckingAccount("CA 3", 0));
+		accs.add(new SavingsAccount("SA 3", 0, 3));
+		accs.add(new CheckingAccount("CA 4", 0));
+		accs.add(new SavingsAccount("SA 4", 0, 4));
 		
-		SortedSearchableArray a2 = new SortedSearchableArray();
+		double total = 0;
+		for(int i = 0; i < accs.size(); i++)
+		{
+			System.out.println(accs.get(i).toString());
+			accs.get(i).deposit(100);
+			total = total + accs.get(i).getBalance();
+		}
+		System.out.println("Total before deduction(Checking) and interest adding(Savings): " + total);
 		
-		System.out.println(a2.toString());
+		System.out.println("========");
 		
-		System.out.println("\nInts in array are random so searching will be done always on index 3\n");
-		System.out.println("Linear on sorted array object: " + a2.linearSearch(a2.getArray()[3]));
-		System.out.println("Binary on sorted array object: " + a2.binarySearch(a2.getArray()[3]));
-		System.out.println("Search for nonexistent element: " + a2.binarySearch(523));
-
+		total = 0;
+		double totalFees = 0;
+		double totalInterest = 0;
+		for(int i = 0; i < accs.size(); i++)
+		{
+			if(i % 2 == 0)
+			{
+				((CheckingAccount) accs.get(i)).deductFees();
+				totalFees = totalFees + 100 - accs.get(i).getBalance();
+			}
+			else
+			{
+				((SavingsAccount) accs.get(i)).addInterest();
+				totalInterest = totalInterest - 100 + accs.get(i).getBalance();
+			}
+			total = total + accs.get(i).getBalance();
+		}
+		System.out.println("Total fees deducted from checking: $" + totalFees);
+		System.out.println("Total interest added from savings: $" + totalInterest);
+		System.out.println("Total Balance of all accounts: $" + total);
 	}
 
 }
